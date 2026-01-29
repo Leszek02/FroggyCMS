@@ -1,0 +1,36 @@
+
+services:
+  db:
+    image: database
+    build:
+      dockerfile: ./Dockerfile
+      context: database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+    - db-data:/var/lib/postgresql
+    ports:
+    - "5433:5432"
+    healthcheck:
+      test: pg_isready -U postgres -d postgres
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+
+  cms:
+    image: main-cms-image
+    build:
+      dockerfile: ./Dockerfile
+      context: cms
+    ports:
+    - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+
+volumes:
+  db-data:

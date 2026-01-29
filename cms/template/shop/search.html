@@ -1,0 +1,143 @@
+{{define "search"}}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Florist Template">
+    <meta name="keywords" content="Florist unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Florist | Template</title>
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__search__option">
+            <img class="search-switch" src="img/icon/search.png" alt="">
+        </div>
+        <div class="offcanvas__widget">
+            <ul>
+                <li><a href="#"><img src="img/icon/heart.png" alt=""></a> <span>(05)</span></li>
+                <li><a href="#"><img src="img/icon/bag.png" alt=""></a> <span>(01)</span></li>
+            </ul>
+            <div class="price">$ 65.0</div>
+        </div>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    {{ template "shop_navigation" .}}
+
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="product__widget">
+                <div class="row">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="product__widget__text">
+                            <i class="fa fa-bars"></i>
+                            <p>Showing {{len .Products}} results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {{range .Products}}
+                <div class="d-col">
+                    <div class="product__item">
+                        {{if .ProductMainImage}}
+                        <div class="product__item__pic set-bg" data-setbg="{{.ProductMainImage}}">
+                        {{else}}
+                        <div class="product__item__pic set-bg" data-setbg="/static/frog.jpg">
+                        {{end}}
+                            {{if not .Availability}}
+                            <div class="label">Out Of Stock</div>
+                            {{end}}
+                            <ul class="product__item__hover">
+                                <li><a href="/product/{{.ProductID}}"><span class="icon_search"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h5><a href="/product/{{.ProductID}}">{{.Name}}</a></h5>
+                            <div class="price">${{printf "%.2f" .Price}}</div>
+                            {{if .Availability}}
+                            <a href="#" class="cart-btn" onclick="addToCart(event)" data-product-id="{{.ProductID}}">Add to cart</a>
+                            {{else}}
+                            <a href="#" class="cart-btn disabled" style="opacity: 0.5; pointer-events: none;">Out of Stock</a>
+                            {{end}}
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+                <div class="col-lg-12 text-center">
+                    <p>No products found.</p>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </section>
+    <!-- Product Section End -->
+
+   {{ template "shop_footer" .}}
+
+    <!-- Js Plugins -->
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/jquery.magnific-popup.min.js"></script>
+    <script src="/static/mixitup.min.js"></script>
+    <script src="/static/jquery.nice-select.min.js"></script>
+    <script src="/static/jquery.nicescroll.min.js"></script>
+    <script src="/static/jquery.slicknav.js"></script>
+    <script src="/static/owl.carousel.min.js"></script>
+    <script src="/static/main.js"></script>
+
+    <script>
+        function addToCart(e) {
+            e.preventDefault();
+            
+            var productId = parseInt(e.target.dataset.productId, 10);
+            
+            $.ajax({
+                url: '/carts',
+                method: 'PATCH',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    product_id: productId,
+                    quantity: 1
+                }),
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert(`Failed to add product to cart: ${xhr.responseText}`);
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
+{{end}}

@@ -1,0 +1,290 @@
+{{define "shop"}}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+			
+    <meta charset="UTF-8">
+    <meta name="description" content="Florist Template">
+    <meta name="keywords" content="Florist  unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Florist | Template</title>
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__search__option">
+            <img class="search-switch" src="static/icon.jpg" alt="">
+        </div>
+        <div class="offcanvas__widget">
+            <ul>
+                <li><a href="#"><img src="static/icon.jpg" alt=""></a> <span>(05)</span></li>
+                <li><a href="#"><img src="static/icon.jpg" alt=""></a> <span>(01)</span></li>
+            </ul>
+            <div class="price">$ 65.0</div>
+        </div>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="static/icon.jpg" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    {{ template "shop_navigation" .}}
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__items set-bg" data-setbg="static/icon.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="hero__text">
+                                <span>{{ .title }}</span>
+                                <h2>Making beautiful flowers a part of your life.</h2>
+                                <a href="#" class="primary-btn">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__items set-bg" data-setbg="img/hero/hero-2.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="hero__text">
+                                <span>Fresh Flower & Gift Shop</span>
+                                <h2>Making beautiful flowers a part of your life.</h2>
+                                <a href="#" class="primary-btn">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Benfits Begin -->
+    <div class="benefits">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="benefits__item">
+                        <div class="benefits__item__icon">
+                            <img src="static/icon.jpg" alt="">
+                        </div>
+                        <div class="benefits__item__text">
+                            <h4>100% Freshness</h4>
+                            <p>Most people are unaware of the less common flower</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="benefits__item">
+                        <div class="benefits__item__icon">
+                            <img src="static/icon.jpg" alt="">
+                        </div>
+                        <div class="benefits__item__text">
+                            <h4>Made by artist</h4>
+                            <p>Most people are unaware of the less common flower</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="benefits__item">
+                        <div class="benefits__item__icon">
+                            <img src="img/benefit/benefit-3.jpg" alt="">
+                        </div>
+                        <div class="benefits__item__text">
+                            <h4>Own courier</h4>
+                            <p>Most people are unaware of the less common flower</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="benefits__item">
+                        <div class="benefits__item__icon">
+                            <img src="img/benefit/benefit-4.jpg" alt="">
+                        </div>
+                        <div class="benefits__item__text">
+                            <h4>100% Freshness</h4>
+                            <p>Most people are unaware of the less common flower</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Benfits End -->
+
+    <!-- Categories Begin -->
+    <div class="categories">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="categories__item set-bg" data-setbg="img/categories/categories-1.jpg">
+                        <div class="categories__item__text">
+                            <h4>Fresh Flower</h4>
+                            <span>( 25 items )</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="categories__item set-bg" data-setbg="img/categories/categories-2.jpg">
+                        <div class="categories__item__text">
+                            <h4>Succulent plants</h4>
+                            <span>( 162 items )</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="categories__item set-bg" data-setbg="img/categories/categories-3.jpg">
+                        <div class="categories__item__text">
+                            <h4>Cactus plants</h4>
+                            <span>( 58 items )</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="categories__item set-bg" data-setbg="img/categories/categories-4.jpg">
+                        <div class="categories__item__text">
+                            <h4>Funiture tree</h4>
+                            <span>( 25 items )</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Categories End -->
+
+    <!-- About Section Begin -->
+    <section class="about spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="section-title">
+                        <span>About us</span>
+                        <h2>We provide all kinds of fresh flower services</h2>
+                    </div>
+                </div>
+                <div class="col-lg-7 offset-lg-1">
+                    <div class="about__top__text">
+                        <p>For Heather Henson, of Boreal Blooms in Cold Lake, Alberta, Canada, growing flowers that can
+                            be dried and incorporated into late fall and winter floral arrangements has been a
+                            game-changer. During her growing season, this farmer-florist relies on a vivid palette of
+                        annuals, perennials and ornamental grasses to supply her studio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section End -->
+
+        <!-- Arrival Section Begin -->
+        <section class="arrival spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="section-title">
+                            <span>Our flower</span>
+                            <h2>New Arrivals</h2>
+                        </div>
+                        <div class="filter__controls">
+                            <ul>
+                                <li class="active" data-filter="*">All</li>
+                                {{range .Categories}}
+                                <li data-filter=".{{.Slug}}">{{.Name}}</li>
+                                {{end}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row product__filter">
+                    {{range .Products}}
+                    <div class="d-col mix {{.CategorySlug}}">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg" data-setbg="/static/img/product/default.jpg">
+                                {{if not .Availability}}
+                                <div class="label">Out Of Stock</div>
+                                {{end}}
+                                <ul class="product__item__hover">
+                                    <li><a href="/products/{{.ProductID}}"><span class="icon_search"></span></a></li>
+                                    <li><a href="#" class="add-to-cart-quick" data-product-id="{{.ProductID}}"><span class="icon_bag_alt"></span></a></li>
+                                    <li><a href="#"><img src="/media/heart.png" alt=""><span class="icon_heart_alt"></span></a></li>
+                                </ul>
+                            </div>
+                            <div class="product__item__text">
+                                <h5><a href="/products/{{.ProductID}}">{{.Name}}</a></h5>
+                                <div class="price">${{printf "%.2f" .Price}}</div>
+                                {{if .Availability}}
+                                <a href="#" class="cart-btn add-to-cart-quick" data-product-id="{{.ProductID}}">Add to cart</a>
+                                {{end}}
+                            </div>
+                        </div>
+                    </div>
+                    {{end}}
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="view__all">
+                            <a href="/search/products">View all products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Arrival Section End -->
+
+        <!-- Call To Action Section Begin -->
+        <section class="callto spad set-bg" data-setbg="img/call-bg.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="callto__text">
+                            <span>Custom flower</span>
+                            <h2>Let our flowers make your party more perfect.</h2>
+                            <a href="#" class="primary-btn">Order Now</a>
+                            <a href="#" class="primary-btn white-btn">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Call To Action Section End -->
+
+        {{ template "shop_footer" .}}
+
+        <!-- Js Plugins -->
+        <script src="/static/jquery-3.3.1.min.js"></script>
+        <script src="/static/bootstrap.min.js"></script>
+        <script src="/static/jquery.magnific-popup.min.js"></script>
+        <script src="/static/mixitup.min.js"></script>
+        <script src="/static/jquery.nice-select.min.js"></script>
+        <script src="/static/jquery.nicescroll.min.js"></script>
+        <script src="/static/jquery.slicknav.js"></script>
+        <script src="/static/owl.carousel.min.js"></script>
+        <script src="/static/main.js"></script>
+
+</body>
+
+    </html>
+{{end}}

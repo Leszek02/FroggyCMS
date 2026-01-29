@@ -1,0 +1,138 @@
+/* Auth page styles — use existing theme colors only */
+
+.auth-wrapper {
+    padding: 60px 0;
+    /* allow normal document flow so page can scroll when needed */
+}
+
+.auth-card {
+    background: #ffffff;
+    border: 1px solid #f1f1f1;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.auth-card .card-body {
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+.auth-header h2 {
+    color: #111111;
+    margin-bottom: 6px;
+    font-family: "Libre Baskerville", serif;
+}
+
+.auth-header .lead {
+    color: #444444;
+    margin-bottom: 18px;
+}
+
+.auth-btn {
+    display: inline-block;
+    width: auto;
+    padding: 12px 28px;
+    border-radius: 50px;
+    background: #f45d96;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    margin: 0 auto; /* center when inside text-center */
+}
+
+.auth-small-link {
+    color: #111111;
+}
+
+/* make auth links visible on hover using theme accent color */
+.auth-small-link:hover,
+.auth-small-link:focus {
+    color: #f45d96;
+    text-decoration: none;
+}
+
+/* return/back button matching theme */
+.auth-back-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: 2px solid #f45d96;
+    color: #f45d96;
+    background: transparent;
+    font-weight: 600;
+    text-transform: none;
+    text-decoration: none;
+}
+.auth-back-btn:hover,
+.auth-back-btn:focus {
+    background: #f45d96;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* breadcrumb layout for auth pages: align back button and title */
+.auth-breadcrumb .breadcrumb__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+}
+.auth-breadcrumb .breadcrumb__text h2 {
+    margin: 0;
+}
+.auth-breadcrumb .auth-back-btn i.fa {
+    margin-right: 8px;
+}
+
+/* move auth back button to upper-left of the breadcrumb */
+.auth-breadcrumb .auth-back-btn {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+    .auth-breadcrumb .auth-back-btn { left: 12px; }
+}
+
+.auth-card .form-control {
+    height: 46px;
+    padding: 10px 12px;
+}
+
+/* increase spacing between form fields */
+.auth-card .form-group {
+    margin-bottom: 20px;
+}
+
+/* ensure inputs fill available space and align consistently */
+.auth-card .form-control {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Ensure card can shrink on small screens and page can scroll */
+.auth-card {
+    max-width: 100%;
+}
+
+@media (max-height: 640px) {
+    .auth-wrapper { padding: 30px 0; }
+    .auth-card .card-body { padding: 18px; }
+}
+
+.auth-footer {
+    margin-top: 12px;
+    color: #444444;
+}
+
+@media (max-width: 576px) {
+    .auth-wrapper { padding: 40px 0; }
+    .auth-btn { width: 100%; display: block; }
+}

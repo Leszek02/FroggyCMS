@@ -1,0 +1,1 @@
+docker exec -i <CONTAINER_ID> psql -U postgres -d postgres < create_navigation.sql

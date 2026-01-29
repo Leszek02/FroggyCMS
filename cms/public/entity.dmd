@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="entity" id="57613174-4E67-A99C-8D76-10A4CDB49818" version="3.5">
+<createdBy>Leszke</createdBy>
+<createdTime>2025-11-13 11:43:07 UTC</createdTime>
+<ownerDesignName>entity</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>57613174-4E67-A99C-8D76-10A4CDB49818</designId>
+<usedDesignStorageDescriptors>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="3039012D-B1D9-1E2B-1223-1B0E69ED9DFC">
+<designStoragePath>D:\Studia\Semestr 9\cms\projekt_cms\entity</designStoragePath>
+</designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="20572EAB-F99A-859B-F151-018C2E4CAD43">
+<designStoragePath>D:\Studia\Semestr 9\cms\projekt_cms\entity</designStoragePath>
+</designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="7A6B612D-813F-A376-8DEB-A2D2F77C3A00">
+<designStoragePath>D:\Studia\Semestr 9\cms\projekt_cms\entity</designStoragePath>
+</designDescr>
+</usedDesignStorageDescriptors>
+</OSDM_Design>

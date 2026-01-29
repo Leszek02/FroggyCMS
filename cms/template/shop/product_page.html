@@ -1,0 +1,271 @@
+{{ define "products" }}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{{.Product.Description}}">
+    <meta name="keywords" content="{{.Product.ProductCategory}}, {{.Product.Name}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{.Product.Name}} | Florist</title>
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__search__option">
+            <img class="search-switch" src="/static/img/icon/search.png" alt="">
+        </div>
+        <div class="offcanvas__widget">
+            <ul>
+                <li><a href="#"><img src="/static/img/icon/heart.png" alt=""></a> <span>(05)</span></li>
+                <li><a href="#"><img src="/static/img/icon/bag.png" alt=""></a> <span>(01)</span></li>
+            </ul>
+            <div class="price">$ 65.0</div>
+        </div>
+        <div class="offcanvas__logo">
+            <a href="/"><img src="/static/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    {{ template "shop_navigation" .}}
+    
+    <!-- Product Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="product__details__content">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="product__details__pic">
+                            <div class="product__details__pic__item">
+                                {{if .Product.ProductMainImage}}
+                                    <img src="{{.Product.ProductMainImage}}" alt="{{.Product.Name}}" class="product__details__big__pic">
+                                {{else}}
+                                    <img src="/static/img/product/default.jpg" alt="{{.Product.Name}}" class="product__details__big__pic">
+                                {{end}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="product__details__text">
+                            <div class="product__details__title">
+                                <span>{{.Product.ProductCategory}}</span>
+                                <h3>{{.Product.Name}}</h3>
+                                {{if .Options.ShowReviews }}
+                                <ul>
+                                    <li>
+                                        <div class="rating">
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                    </li>
+                                    <li>03 reviews</li>
+                                    <li>Write a review</li>
+                                </ul>
+                                {{end}}
+                            </div>
+                            <div class="product__details__price">${{printf "%.2f" .Product.Price}}</div>
+                            <ul class="product__details__widget">
+                                <li>Categories: <span>{{.Product.ProductCategory}}</span></li>
+                                <li>Product code: <span>{{.Product.ProductCode}}</span></li>
+                                {{if .Options.Availability}}
+                                    <li>Availability: 
+                                        {{if .Product.Availability}}
+                                            <span style="color: green;">In Stock</span>
+                                        {{else}}
+                                            <span style="color: red;">Out of Stock</span>
+                                        {{end}}
+                                    </li>
+                                {{end}}
+                                {{if .Options.ShowType}}
+                                    {{if .Product.IsAnimal}}
+                                    <li>Type: <span>Animal Product</span></li>
+                                    {{end}}
+                                {{end}}
+                                <li>VAT: <span>{{printf "%.0f" .Product.VatPercentage}}%</span></li>
+                            </ul>
+                            <div class="product__details__btns">
+                                {{if .Product.Availability}}
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        {{if .Options.AllowQuantity}}
+                                        <span class="dec qtybtn">-</span>
+                                        {{end}}
+                                        <input type="text" value="{{.Quantity}}" id="quantity" readonly>
+                                        {{if .Options.AllowQuantity}}
+                                        <span class="inc qtybtn">+</span>
+                                        {{end}}
+                                    </div>
+                                </div>
+                                <a href="#" class="add_btn" id="add-to-cart-btn" data-product-id="{{.Product.ProductID}}">
+                                    Add To Cart 
+                                    <span><img src="/static/img/icon/bag-little.png" alt=""></span>
+                                </a>
+                                {{else}}
+                                <div class="out-of-stock-msg">
+                                    <p style="color: red; font-weight: bold;">This product is currently out of stock</p>
+                                </div>
+                                {{end}}
+                            </div>
+                            <div class="product__details__desc">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Shipping & Returns</a>
+                                    </li>
+                                    {{if .Options.ShowReviews}}
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews (03)</a>
+                                    </li>
+                                    {{end}}
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                        <p>{{.Product.Description}}</p>
+                                    </div>
+                                    <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse
+                                            ultrices gravida. Risus commodo viverra maecenas accumsan.</p>
+                                    </div>
+                                    <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, incididunt ut labore
+                                            et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus
+                                            commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {{if .Options.ShowRelated}}
+                <div class="related__products">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="section-title">
+                                <h2>Related products</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {{range .RelatedProducts}}
+                        <div class="d-col">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/static/img/product/default.jpg">
+                                    {{if not .Availability}}
+                                    <div class="label">Out Of Stock</div>
+                                    {{end}}
+                                    <ul class="product__item__hover">
+                                        <li><a href="/products/{{.ProductID}}"><span class="icon_search"></span></a></li>
+                                        <li><a href="#" class="add-to-cart-related" data-product-id="{{.ProductID}}"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h5><a href="/products/{{.ProductID}}">{{.Name}}</a></h5>
+                                    <div class="price">${{printf "%.2f" .Price}}</div>
+                                    {{if .Availability}}
+                                    <a href="#" class="cart-btn add-to-cart-related" data-product-id="{{.ProductID}}">Add to cart</a>
+                                    {{end}}
+                                </div>
+                            </div>
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </section>
+    <!-- Product Section End -->
+
+    {{ template "shop_footer" .}}
+
+    <!-- Js Plugins -->
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/jquery.magnific-popup.min.js"></script>
+    <script src="/static/mixitup.min.js"></script>
+    <script src="/static/jquery.nice-select.min.js"></script>
+    <script src="/static/jquery.nicescroll.min.js"></script>
+    <script src="/static/jquery.slicknav.js"></script>
+    <script src="/static/owl.carousel.min.js"></script>
+    <script src="/static/main.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#add-to-cart-btn').on('click', function(e) {
+            e.preventDefault();
+            
+            var productId = $(this).data('product-id');
+            var quantity = parseInt($('#quantity').val()) || 1;
+            
+            $.ajax({
+                url: '/carts',
+                method: 'PATCH',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    product_id: productId,
+                    quantity: quantity
+                }),
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert(`Failed to add product to cart: ${xhr.responseText}`);
+                }
+            });
+        });
+
+        $('.add-to-cart-related').on('click', function(e) {
+            e.preventDefault();
+            
+            var productId = $(this).data('product-id');
+            
+            $.ajax({
+                url: '/carts',
+                method: 'PATCH',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    product_id: productId,
+                    quantity: 1
+                }),
+                success: function(response) {
+                    alert('Product added to cart!');
+                },
+                error: function(xhr) {
+                    alert('Failed to add product to cart');
+                }
+            });
+        });
+    });
+    </script>
+
+</body>
+
+</html>
+{{end}}

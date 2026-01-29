@@ -1,0 +1,53 @@
+{{define "shop_navigation"}}
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="header__logo">
+                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="header__options">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            {{range .Navigations}}
+                                {{if .Status}}
+                                    {{if eq (len .Children) 0}}
+                                        <li><a href="{{.Url}}">{{.Name}}</a></li>
+                                    {{else}}
+                                        <li><a href="{{.Url}}">{{.Name}}</a>
+                                            <ul class="dropdown">
+                                                {{range .Children}}
+                                                    <li><a href="{{.Url}}">{{.Name}}</a></li>
+                                                {{end}}
+                                            </ul>
+                                        </li>
+                                    {{end}}
+                                {{end}}
+                            {{end}}
+                        </ul>
+                    </nav>
+                    <div class="header__option__right">
+                        <div class="header__option__right__cart">
+                            <ul>
+                                <li><a href="#"><img src="/media/bag.png" alt=""></a> <span>({{ .CartQuantity }})</span></li>
+                                {{if .IsLogged}}
+                                    <li class="ml-3"><a href="/profile">Profile</a></li>
+                                    <li><a href="/logout">Logout</a></li>
+                                {{else}}
+                                    <li class="ml-3"><a href="/login">Login</a></li>
+                                    <li><a href="/register">Register</a></li>
+                                {{end}}
+                            </ul>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open"><i class="fa fa-bars"></i></div>
+    </div>
+</header>
+<!-- Header Section End -->
+ {{end}}

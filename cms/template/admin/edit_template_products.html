@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product Page</title>
+
+    <link rel="stylesheet" href="/static/admin/style_sheets_css/style.css" />
+    <link rel="stylesheet" href="/static/admin/style_sheets_css/style-preset.css" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+        }
+
+        .pc-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+
+        .pc-content {
+            margin-left: 260px;
+            padding: 40px;
+            width: calc(100% - 260px);
+        }
+
+        .page-wrapper {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #formMessage {
+            margin-top: 10px;
+            color: red;
+        }
+
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="pc-sidebar">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="/admin-static/test_admin_panel" class="b-brand text-primary">
+                    <img src="./assets/images/logo-white.svg" class="img-fluid logo-lg" alt="logo" />
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="pc-navbar">
+                    <li class="pc-item pc-caption">
+                        <label data-i18n="Dashboard">Dashboard</label>
+                    </li>
+                    <li class="pc-item">
+                        <a href="/admin-static/administrators" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-house-line"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Administrator">Administrator</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/client" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-house-line"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Klient">Klient</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/navigation" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-house-line"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Nawigacja">Nawigacja</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/products" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-package"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Produkty">Produkty</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/pages" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Strony">Strony</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/order" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Strony">Zamówienia</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/delivery_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Dostawcy">Dostawcy</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/payment_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Płatność">Płatność</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/vat_percentage_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="VAT">VAT</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/product_category_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Kategorie">Kategorie</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="pc-content">
+    <div class="page-wrapper">
+        <h1 id="formTitle">Edit Product Page</h1>
+
+        <form id="productForm">
+            <h2>Display Options</h2>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="Availability">
+                    In stock
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="ShowType">
+                    Show product type
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="AllowQuantity">
+                    Allow quantity selection
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="ShowRelated">
+                    Show related products
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="ShowReviews">
+                    Show Reviews
+                </label>
+            </div>
+
+            <button type="submit">Save Page</button>
+        </form>
+
+        <div id="formMessage"></div>
+        <button id="backBtn" type="button" style="background:#7f8c8d;">← Back</button>
+    </div>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    const API = "/pages";
+    const form = document.getElementById("productForm");
+    const msg = document.getElementById("formMessage");
+
+    let originalPage = null;
+
+    document.getElementById("backBtn").onclick = () => {
+        window.location.href = "/admin-static/pages.html";
+    };
+
+    async function loadPage() {
+        const res = await fetch(`${API}/${id}`);
+        originalPage = await res.json();
+
+        let content = {};
+        try {
+            content = JSON.parse(originalPage.content || "{}");
+        } catch {}
+
+        // Populate form from content
+        Object.keys(content).forEach(key => {
+            const input = form.elements[key];
+            if (!input) return;
+
+            if (input.type === "checkbox") {
+                input.checked = !!content[key];
+            } else {
+                input.value = content[key];
+            }
+        });
+    }
+
+    form.addEventListener("submit", async function (e) {
+    console.log("Form submitted!");
+    e.preventDefault();
+
+    console.log("originalPage:", originalPage);
+    
+    if (!originalPage) {
+        console.log("No originalPage - stopping");
+        msg.textContent = "Error: Page data not loaded";
+        return;
+    }
+
+    const contentPayload = {
+        Availability: e.target.elements["Availability"].checked,
+        ShowType: e.target.elements["ShowType"].checked,
+        AllowQuantity: e.target.elements["AllowQuantity"].checked,
+        ShowRelated: e.target.elements["ShowRelated"].checked,
+        ShowReviews: e.target.elements["ShowReviews"].checked
+    };
+
+    console.log("Content payload:", contentPayload);
+
+    const payload = {
+        page_id: originalPage.page_id,
+        name: originalPage.name,
+        type: originalPage.type,
+        status: originalPage.status,
+        administrator_id: originalPage.administrator_id,
+        content: JSON.stringify(contentPayload)
+    };
+
+    console.log("Sending payload:", payload);
+
+    try {
+        const res = await fetch(`/pages/${originalPage.page_id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        console.log("Response status:", res.status);
+
+        if (res.ok) {
+            window.location.href = "/admin-static/pages";
+        } else {
+            const errorText = await res.text();
+            console.log("Error:", errorText);
+            msg.textContent = errorText;
+        }
+    } catch (error) {
+        console.error("Fetch error:", error);
+        msg.textContent = "Network error: " + error.message;
+    }
+});
+
+if (id) {
+    console.log("Loading page with ID:", id);
+    loadPage();
+} else {
+    console.log("No ID provided");
+}
+
+    if (id) loadPage();
+</script>
+
+</body>
+</html>

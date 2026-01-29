@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Products List</title>
+
+    <link rel="stylesheet" href="/static/admin/style_sheets_css/style.css" id="main-style-link" />
+    <link rel="stylesheet" href="/static/admin/style_sheets_css/style-preset.css" />
+
+<style>
+    body.pc-body {
+        margin: 0;
+        min-height: 100vh;
+        background: #f5f5f5;
+        font-family: Arial, sans-serif;
+        display: flex;
+    }
+
+    .pc-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 260px;
+        background: #2c3e50;
+        z-index: 1025;
+        overflow-y: auto;
+    }
+
+    .pc-container {
+        width: 100%;
+    }
+
+    .pc-content {
+        margin-left: 260px;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px;
+        box-sizing: border-box;
+        width: calc(100% - 260px);
+    }
+
+    .page-wrapper {
+        background: white;
+        padding: 30px 40px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 1200px;
+        overflow: hidden;
+    }
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 20px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 900px;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+        white-space: nowrap;
+    }
+
+    th {
+        background: #f8f9fa;
+        font-weight: 600;
+        color: #333;
+    }
+
+    tr:hover {
+        background-color: #fcfcfc;
+    }
+
+    .edit-btn, .delete-btn {
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        font-size: 13px;
+    }
+    .edit-btn { background: #e936e9; color: white; margin-right: 5px; }
+    .delete-btn { background: #e74c3c; color: white; }
+</style>
+</head>
+
+<body class="pc-body">
+
+    <nav class="pc-sidebar">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="/admin-static/test_admin_panel" class="b-brand text-primary">
+                    <img src="./assets/images/logo-white.svg" class="img-fluid logo-lg" alt="logo" />
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="pc-navbar">
+                    <li class="pc-item pc-caption">
+                        <label data-i18n="Dashboard">Dashboard</label>
+                    </li>
+                    <li class="pc-item">
+                        <a href="/admin-static/administrators" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-house-line"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Administrator">Administrator</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/client" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-house-line"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Klient">Klient</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/navigation" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-house-line"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Nawigacja">Nawigacja</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/products" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-package"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Produkty">Produkty</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/pages" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Strony">Strony</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/order" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Strony">Zamówienia</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/delivery_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Dostawcy">Dostawcy</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/payment_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Płatność">Płatność</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/vat_percentage_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="VAT">VAT</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/product_category_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Kategorie">Kategorie</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pc-content">
+        <div class="page-wrapper">
+
+            <h1>Edit Products</h1>
+
+            <div class="table-responsive">
+                <table border="1" cellpadding="8">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>IsAnimal</th>
+                            <th>Price</th>
+                            <th>Availability</th>
+                            <th>VatPercentage</th>
+                            <th>ProductCode</th>
+                            <th>Description</th>
+                            <th>ProductCategory</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody"></tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+                <button id="addBtn"
+                    style="background: #27ae60; color: white; font-weight: bold; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+                    + Add New Product
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        async function loadProduct() {
+            try {
+                const res = await fetch("/products");
+                if (!res.ok) {
+                    throw new Error("Failed to load product");
+                }
+
+                const data = await res.json();
+                const tbody = document.getElementById("productTableBody");
+                tbody.innerHTML = "";
+
+                function addRow(item, parentId = "-") {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                <td>${item.ProductID}</td>
+                <td>${item.name}</td>
+                <td>${item.is_animal ?? ""}</td>
+                <td>${item.price ?? ""}</td>
+                <td>${item.availability ?? ""}</td>
+                <td>${item.vat_percentage ?? ""}</td>
+                <td>${item.product_code ?? ""}</td>
+                <td>${item.description ?? ""}</td>
+                <td>${item.product_category ?? ""}</td>
+                
+                <td>
+                    <button class="edit-btn" data-id="${item.ProductID}">Edit</button>
+                    <button class="delete-btn" data-id="${item.ProductID}">Delete</button>
+                </td>
+            `;
+
+                    tbody.appendChild(tr);
+
+                    // EDIT handler
+                    tr.querySelector(".edit-btn").addEventListener("click", () => {
+                        window.location.href = `/admin-static/edit?table=products&id=${item.ProductID}`;
+                    });
+
+                    // DELETE handler
+                    tr.querySelector(".delete-btn").addEventListener("click", async () => {
+                        if (!confirm("Are you sure you want to delete this product item?")) return;
+
+                        try {
+                            const res = await fetch(`/products/${item.ProductID}`, {
+                                method: "DELETE",
+                                headers: { "Content-Type": "application/json" }
+                            });
+
+                            if (!res.ok) {
+                                const text = await res.text();
+                                throw new Error(text);
+                            }
+
+                            tr.remove();
+
+                        } catch (err) {
+                            console.error("Delete failed:", err);
+                            alert("Failed to delete product item");
+                        }
+                    });
+
+                    if (Array.isArray(item.children) && item.children.length > 0) {
+                        item.children.forEach(child => addRow(child, item.product_id));
+                    }
+                }
+
+                data.forEach(item => addRow(item));
+
+            } catch (err) {
+                console.error("Product load error:", err);
+                alert("Failed to load product");
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", loadProduct);
+
+        document.getElementById("addBtn").onclick = () => {
+            window.location.href = "/admin-static/create?table=products";
+        };
+    </script>
+
+</body>
+
+</html>

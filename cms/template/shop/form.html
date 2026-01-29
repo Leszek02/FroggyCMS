@@ -1,0 +1,127 @@
+{{define "form"}}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+		
+    <meta charset="UTF-8">
+    <meta name="description" content="Florist Template">
+    <meta name="keywords" content="Florist  unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Florist | Template</title>
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__search__option">
+            <img class="search-switch" src="img/icon/search.png" alt="">
+        </div>
+        <div class="offcanvas__widget">
+            <ul>
+                <li><a href="#"><img src="img/icon/heart.png" alt=""></a> <span>(05)</span></li>
+                <li><a href="#"><img src="img/icon/bag.png" alt=""></a> <span>(01)</span></li>
+            </ul>
+            <div class="price">$ 65.0</div>
+        </div>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    {{ template "shop_navigation" . }}
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option set-bg" data-setbg="img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Contact us</h2>
+                        <div class="breadcrumb__links">
+                            <a href="#">Home</a>
+                            <span>Contact</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Contact Section Begin -->
+    <section class="contact spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact__widget">
+                        <h2>Get in touch</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed et dolore.</p>
+                        <ul>
+                            <li><i class="fa fa-map-marker"></i> 69 North Cleveland Street, Memphis,USA.</li>
+                            <li><i class="fa fa-phone"></i> (123) 8111 9210 - (012) 1111 6868</li>
+                            <li><i class="fa fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7f3913100d160c0d3f0c0a0f0f100d0b0b171a12511c1012">[email&#160;protected]</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact__form">
+                        <h2>Contact us</h2>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <textarea placeholder="Message"></textarea>
+                            <button type="submit" class="site-btn">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+   {{ template "shop_footer" .}}
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/jquery.magnific-popup.min.js"></script>
+    <script src="/static/mixitup.min.js"></script>
+    <script src="/static/jquery.nice-select.min.js"></script>
+    <script src="/static/jquery.nicescroll.min.js"></script>
+    <script src="/static/jquery.slicknav.js"></script>
+    <script src="/static/owl.carousel.min.js"></script>
+    <script src="/static/main.js"></script>
+</body>
+
+</html>
+{{end}}

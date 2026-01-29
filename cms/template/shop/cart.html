@@ -1,0 +1,170 @@
+{{ define "cart" }}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Shopping Cart">
+    <meta name="keywords" content="Florist, shopping cart">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping Cart | Florist</title>
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__search__option">
+            <img class="search-switch" src="/static/img/icon/search.png" alt="">
+        </div>
+        <div class="offcanvas__widget">
+            <ul>
+                <li><a href="#"><img src="/static/img/icon/heart.png" alt=""></a> <span>(05)</span></li>
+                <li><a href="#"><img src="/static/img/icon/bag.png" alt=""></a> <span>(01)</span></li>
+            </ul>
+            <div class="price">$ 65.0</div>
+        </div>
+        <div class="offcanvas__logo">
+            <a href="/"><img src="/static/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    {{ template "shop_navigation" . }}
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="cart spad">
+        <div class="container">
+            {{if .Cart}}
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{range .Cart}}
+                                <tr data-product-id="{{.ProductID}}">
+                                    <td class="cart__item">
+                                        <div class="cart__item__pic">
+                                            {{if .Image}}
+                                            <img src="{{.Image}}" alt="{{.Name}}" style="width: 80px; height: 80px; object-fit: cover;">
+                                            {{else}}
+                                            <img src="/static/img/cart/default.jpg" alt="{{.Name}}" style="width: 80px; height: 80px; object-fit: cover;">
+                                            {{end}}
+                                        </div>
+                                        <div class="cart__item__text">
+                                            <h4><a href="/product/{{.ProductID}}">{{.Name}}</a></h4>
+                                            <span>${{printf "%.2f" .Price}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="cart__quantity">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <span class="dec qtybtn">-</span>
+                                                <input type="text" value="{{.Quantity}}" readonly>
+                                                <span class="inc qtybtn">+</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price">${{printf "%.2f" .Total}}</td>
+                                    <td class="cart__close"><i onclick="removeItem(event)" class="fa fa-times-circle"></i></td>
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                        <div class="cart__btn">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5">
+                                    <div class="cart__btn__continue">
+                                        <a href="/search/products"><span class="arrow_back"></span> Continue shopping</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-7">
+                                    <div class="cart__btn__right">
+                                        <a onclick="clearCart(event)"><span class="icon_trash_alt"></span> Clear shopping cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="cart__total">
+                        <h4>Cart Total</h4>
+                        <ul>
+                            <li>Total <span>${{printf "%.2f" .CartTotal}}</span></li>
+                        </ul>
+                        <a href="/checkout">PROCEED TO CHECKOUT</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="empty-cart" style="padding: 100px 0;">
+                        <h3>Your cart is empty</h3>
+                        <p style="margin: 20px 0;">Start shopping to add items to your cart</p>
+                        <a href="/search/products" class="primary-btn">Continue Shopping</a>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+    {{ template "shop_footer" .}}
+
+    <!-- Js Plugins -->
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/jquery.magnific-popup.min.js"></script>
+    <script src="/static/mixitup.min.js"></script>
+    <script src="/static/jquery.nice-select.min.js"></script>
+    <script src="/static/jquery.nicescroll.min.js"></script>
+    <script src="/static/jquery.slicknav.js"></script>
+    <script src="/static/owl.carousel.min.js"></script>
+    <script src="/static/main.js"></script>
+
+    <script>
+        function clearCart(e) {
+        e.preventDefault();
+        fetch("/carts", { method: "DELETE" })
+            .then(() => location.reload());
+        }
+
+        function removeItem(e) {
+            e.preventDefault();
+            fetch("/carts/" + e.target.closest("tr").dataset.productId, { method: "DELETE" })
+                .then(() => location.reload());
+        }
+    </script>
+
+</body>
+
+</html>
+{{end}}

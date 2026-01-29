@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Item</title>
+    <link rel="stylesheet" href="/static/admin/style_sheets_css/style.css" id="main-style-link" />
+    <link rel="stylesheet" href="/static/admin/style_sheets_css/style-preset.css" />
+
+    <style>
+        body.pc-body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        .pc-sidebar {
+            background: #2c3e50;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 260px;
+            z-index: 1025;
+        }
+
+        .pc-content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .page-wrapper {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        #createForm label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #createForm input,
+        #createForm select {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #createForm button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        #formMessage {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body class="pc-body">
+
+    <nav class="pc-sidebar">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="/admin-static/test_admin_panel" class="b-brand text-primary">
+                    <img src="./assets/images/logo-white.svg" class="img-fluid logo-lg" alt="logo" />
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="pc-navbar">
+                    <li class="pc-item pc-caption">
+                        <label data-i18n="Dashboard">Dashboard</label>
+                    </li>
+                    <li class="pc-item">
+                        <a href="/admin-static/administrators" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-house-line"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Administrator">Administrator</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/client" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-house-line"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Klient">Klient</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/navigation" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-house-line"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Nawigacja">Nawigacja</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/products" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-package"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Produkty">Produkty</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/pages" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Strony">Strony</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/order" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Strony">Zamówienia</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/delivery_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Dostawcy">Dostawcy</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/payment_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Płatność">Płatność</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/vat_percentage_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="VAT">VAT</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item">
+                        <a href="/admin-static/product_category_dictionary" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ph ph-truck"></i>
+                            </span>
+                            <span class="pc-mtext" data-i18n="Kategorie">Kategorie</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pc-content">
+        <div class="page-wrapper">
+            <h1 id="pageHeading">Create New Item</h1>
+            <form id="createForm"></form>
+
+            <div style="margin-top: 10px; display: flex; gap: 10px;">
+                <button type="button" id="cancelBtn"
+                    style="background: #95a5a6; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
+                    Cancel
+                </button>
+            </div>
+
+            <div id="formMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.pc-item.pc-hasmenu > .pc-link').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const submenu = link.nextElementSibling;
+                if (!submenu) return;
+                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        /**
+         * Helper function to get the value from option object based on value_field
+         */
+        function getOptionValue(opt, col) {
+            // If value_field is explicitly specified in schema, use it
+            if (col.value_field) {
+                const key = Object.keys(opt).find(k => 
+                    k.toLowerCase() === col.value_field.toLowerCase()
+                );
+                if (key) return opt[key];
+            }
+            
+            // Otherwise, try to find an ID field (backwards compatible)
+            return opt.id ?? 
+                   opt.ID ?? 
+                   opt[col.name + "_id"] ?? 
+                   Object.values(opt)[0];
+        }
+
+        /**
+         * Helper function to get the label from option object
+         */
+        function getOptionLabel(opt, col) {
+            if (col.label_field) {
+                const key = Object.keys(opt).find(k => 
+                    k.toLowerCase() === col.label_field.toLowerCase()
+                );
+                if (key) return opt[key];
+            }
+            
+            if (opt.label !== undefined) {
+                return opt.label;
+            }
+            
+            // Fallback to the value
+            return getOptionValue(opt, col);
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const messageDiv = document.getElementById("formMessage");
+            const form = document.getElementById("createForm");
+
+            const params = new URLSearchParams(window.location.search);
+            const tableName = params.get("table") || "navigation";
+
+            const friendlyName = tableName.replace(/_/g, ' ');
+            document.title = "Create " + friendlyName;
+            document.getElementById("pageHeading").textContent = "Create New " + friendlyName;
+
+            document.getElementById("cancelBtn").onclick = () => {
+                window.location.href = `/admin-static/${tableName}`;
+            };
+
+            try {
+                console.log("Fetching schema for:", tableName);
+                const res = await fetch(`/${tableName}/schema`);
+                if (!res.ok) throw new Error("Failed to fetch schema");
+                const schema = await res.json();
+                console.log("Schema loaded:", schema);
+
+                for (const col of schema) {
+                    // Skip ID fields and timestamp fields
+                    if (!col.name) continue;
+                    if (col.name.toLowerCase().endsWith("_id")) continue;
+                    if (["create_date", "modify_date"].includes(col.name)) continue;
+
+                    const wrapper = document.createElement("div");
+                    const label = document.createElement("label");
+                    label.textContent = col.name.replace(/_/g, " ").toUpperCase();
+                    wrapper.appendChild(label);
+
+                    let input;
+
+                    // ---------- FILE ----------
+                    if (col.input === "file") {
+                        const container = document.createElement("div");
+                        container.className = "file-browser-group";
+                        
+                        // File Input (for new uploads)
+                        const fileInput = document.createElement("input");
+                        fileInput.type = "file";
+                        fileInput.name = col.name;
+                        fileInput.id = `file_${col.name}`;
+                        fileInput.accept = "image/*";
+                        fileInput.style.marginBottom = "5px";
+                        if (col.required) fileInput.required = true;
+                        
+                        // Hidden Input (to hold existing ID if chosen)
+                        const hiddenID = document.createElement("input");
+                        hiddenID.type = "hidden";
+                        hiddenID.name = `${col.name}_id`;
+                        hiddenID.id = `hidden_${col.name}`;
+
+                        // Browse Button
+                        const browseBtn = document.createElement("button");
+                        browseBtn.type = "button";
+                        browseBtn.textContent = "Browse Existing Photos";
+                        browseBtn.style = "font-size:12px; padding:5px 10px; background:#95a5a6; margin-top:0;";
+                        browseBtn.onclick = () => openMediaGallery(col.name);
+
+                        container.appendChild(fileInput);
+                        container.appendChild(browseBtn);
+                        container.appendChild(hiddenID);
+                        
+                        wrapper.appendChild(container);
+                        input = null; // Prevent double appending
+                    }
+                    // ---------- SELECT ----------
+                    else if (col.input === "select") {
+                        input = document.createElement("select");
+                        input.name = col.name;
+                        if (col.required) input.required = true;
+
+                        try {
+                            const optRes = await fetch(col.options_from);
+                            const options = await optRes.json();
+                            console.log(`Options for ${col.name}:`, options);
+
+                            // Add empty option ONLY if field is not required
+                            if (!col.required) {
+                                const emptyOption = document.createElement("option");
+                                emptyOption.value = "";
+                                emptyOption.textContent = "-- Select --";
+                                input.appendChild(emptyOption);
+                            }
+
+                            options.forEach(opt => {
+                                const option = document.createElement("option");
+                                
+                                // VALUE: Use value_field if specified, otherwise try to find ID
+                                option.value = getOptionValue(opt, col);
+                                
+                                // LABEL: Use label_field if specified
+                                option.textContent = getOptionLabel(opt, col);
+
+                                input.appendChild(option);
+                            });
+
+                        } catch (err) {
+                            console.error(`Error loading options for ${col.name}:`, err);
+                            messageDiv.textContent = `Error loading options for ${col.name}`;
+                        }
+
+                    // ---------- NON-SELECT ----------
+                    } else {
+                        input = document.createElement("input");
+                        input.name = col.name;
+
+                        if (col.type === "integer" || col.type === "numeric") {
+                            input.type = "number";
+                            input.step = "any";
+                        } else if (col.type === "boolean") {
+                            input.type = "checkbox";
+                        } else {
+                            input.type = "text";
+                        }
+
+                        if (col.required) input.required = true;
+                    }
+
+                    if (input) {
+                        wrapper.appendChild(input);
+                    }
+                    form.appendChild(wrapper);
+                }
+
+                console.log("Form built successfully");
+                
+                const submitBtn = document.createElement("button");
+                submitBtn.type = "submit";
+                submitBtn.textContent = "Create " + friendlyName;
+                form.appendChild(submitBtn);
+
+                form.addEventListener("submit", async e => {
+                    e.preventDefault();
+                    messageDiv.textContent = "";
+                    const formData = new FormData(form);
+                    const payload = {};
+
+                    // Process all schema fields, not just form entries
+                    schema.forEach(fieldSchema => {
+                        const input = form.elements[fieldSchema.name];
+                        if (!input) return;
+
+                        if (fieldSchema.type === "boolean") {
+                            // Handle checkbox - convert to boolean
+                            payload[fieldSchema.name] = input.checked;
+                        } else if (fieldSchema.type === "integer") {
+                            const rawValue = formData.get(fieldSchema.name);
+                            // Handle integer types - convert to number
+                            if (rawValue === "" || rawValue === null) {
+                                payload[fieldSchema.name] = null;
+                            } else {
+                                const parsed = parseInt(rawValue, 10);
+                                payload[fieldSchema.name] = isNaN(parsed) ? null : parsed;
+                            }
+                        } else if (fieldSchema.type === "numeric") {
+                            const rawValue = formData.get(fieldSchema.name);
+                            // Handle float types - convert to number
+                            if (rawValue === "" || rawValue === null) {
+                                payload[fieldSchema.name] = null;
+                            } else {
+                                const parsed = parseFloat(rawValue);
+                                payload[fieldSchema.name] = isNaN(parsed) ? null : parsed;
+                            }
+                        } else if (fieldSchema.input === "select" && (input.type === "number" || fieldSchema.type === "integer" || fieldSchema.type === "numeric")) {
+                            const rawValue = formData.get(fieldSchema.name);
+                            // Special case: select fields that should be numeric
+                            if (rawValue === "" || rawValue === null) {
+                                payload[fieldSchema.name] = null;
+                            } else {
+                                const parsed = parseInt(rawValue, 10);
+                                payload[fieldSchema.name] = isNaN(parsed) ? rawValue : parsed;
+                            }
+                        } else {
+                            // String fields
+                            const rawValue = formData.get(fieldSchema.name);
+                            payload[fieldSchema.name] = rawValue;
+                        }
+                    });
+
+                    // OLD CODE - replaced with schema iteration above
+                    /*for (let [key, value] of formData.entries()) {
+                        const input = form.elements[key];
+                        const fieldSchema = schema.find(f => f.name === key);
+                        if (!fieldSchema) continue;
+
+                        const rawValue = value;
+
+                        if (fieldSchema.type === "boolean") {
+                            payload[key] = input.checked;
+                        } else if (fieldSchema.type === "integer") {
+                    */
+
+                    console.log("Submitting payload:", payload);
+
+                    // Check if this form has file uploads
+                    const hasFileInput = schema.some(col => col.input === "file");
+
+                    try {
+                        let postRes;
+                        
+                        if (hasFileInput) {
+                            // For forms with files, use multipart FormData
+                            // But we need to rebuild it with proper values
+                            const fileFormData = new FormData();
+                            
+                            // Add all fields from payload with proper type conversion
+                            for (let [key, value] of Object.entries(payload)) {
+                                fileFormData.append(key, value);
+                            }
+                            
+                            // Add file inputs separately
+                            schema.forEach(col => {
+                                if (col.input === "file") {
+                                    const fileInput = document.getElementById(`file_${col.name}`);
+                                    const hiddenID = document.getElementById(`hidden_${col.name}`);
+                                    
+                                    if (fileInput && fileInput.files.length > 0) {
+                                        // New file uploaded
+                                        fileFormData.append(col.name, fileInput.files[0]);
+                                    } else if (hiddenID && hiddenID.value) {
+                                        // Existing file selected from gallery
+                                        fileFormData.append(`${col.name}_id`, hiddenID.value);
+                                    }
+                                }
+                            });
+                            
+                            postRes = await fetch(`/${tableName}`, {
+                                method: "POST",
+                                body: fileFormData
+                            });
+                        } else {
+                            // For forms without files, use JSON
+                            postRes = await fetch(`/${tableName}`, {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(payload)
+                            });
+                        }
+
+                        if (!postRes.ok) {
+                            const errorText = await postRes.text();
+                            throw new Error(errorText);
+                        }
+
+                        window.location.href = `/admin-static/${tableName}`;
+                    } catch (err) {
+                        messageDiv.textContent = "Error: " + err.message;
+                        console.error("Submit error:", err);
+                    }
+                });
+
+            } catch (err) {
+                messageDiv.textContent = "Failed to load form: " + err.message;
+                console.error("Form load error:", err);
+            }
+        });
+
+        async function openMediaGallery(fieldName) {
+            const messageDiv = document.getElementById("formMessage");
+            
+            try {
+                // Fetch all media
+                const res = await fetch('/media'); 
+                if (!res.ok) throw new Error("Could not load gallery");
+                const images = await res.json();
+                
+                console.log("Loaded images:", images);
+
+                // Create the Modal Overlay
+                const modal = document.createElement('div');
+                modal.id = "galleryModal";
+                modal.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; display:flex; justify-content:center; align-items:center; padding:20px;";
+                
+                // Create the Gallery Container
+                const content = document.createElement('div');
+                content.style = "background:white; width:100%; max-width:900px; max-height:90vh; border-radius:12px; display:flex; flex-direction:column; overflow:hidden;";
+                
+                // Header
+                const header = document.createElement('div');
+                header.style = "padding:20px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;";
+                header.innerHTML = `
+                    <h3 style="margin:0;">Select Image for ${fieldName.replace(/_/g, ' ')}</h3>
+                    <button type="button" id="closeGallery" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+                `;
+                
+                const grid = document.createElement('div');
+                grid.id = "galleryGrid";
+                grid.style = "padding:20px; display:grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap:20px; overflow-y:auto; flex-grow:1;";
+
+                // Check if images array exists and has items
+                if (!images || images.length === 0) {
+                    grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#999;">No images found</p>';
+                } else {
+                    images.forEach(img => {
+                        const card = document.createElement('div');
+                        card.className = "gallery-card";
+                        card.style = "border:2px solid #eee; border-radius:8px; overflow:hidden; cursor:pointer; transition: transform 0.2s, border-color 0.2s;";
+                        
+                        // Get proper image path
+                        let imagePath = img.Path || img.path || '';
+                        if (imagePath.startsWith('../')) {
+                            imagePath = imagePath.substring(2);
+                        }
+                        if (!imagePath.startsWith('/')) {
+                            imagePath = '/' + imagePath;
+                        }
+                        
+                        console.log("Image path:", imagePath);
+                        
+                        const imageBox = document.createElement('div');
+                        imageBox.style = "width:100%; height:120px; background:#f8f9fa; display:flex; align-items:center; justify-content:center;";
+                        
+                        const imgElement = document.createElement('img');
+                        imgElement.src = imagePath;
+                        imgElement.style = "max-width:100%; max-height:100%; object-fit:contain;";
+                        imgElement.onerror = function() {
+                            this.style.display = 'none';
+                            imageBox.innerHTML = '<span style="color:#999; font-size:12px;">No preview</span>';
+                        };
+                        
+                        imageBox.appendChild(imgElement);
+                        
+                        const info = document.createElement('div');
+                        info.style = "padding:10px; font-size:11px; color:#666; background:white; border-top:1px solid #eee; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;";
+                        info.textContent = img.Name || img.name || 'Untitled';
+                        
+                        card.appendChild(imageBox);
+                        card.appendChild(info);
+
+                        // Hover effects
+                        card.addEventListener('mouseenter', () => {
+                            card.style.borderColor = "#2c3e50";
+                            card.style.transform = "scale(1.02)";
+                        });
+                        card.addEventListener('mouseleave', () => {
+                            card.style.borderColor = "#eee";
+                            card.style.transform = "scale(1)";
+                        });
+
+                        // Selection Logic
+                        card.addEventListener('click', () => {
+                            const mediaID = img.Media_ID || img.media_id || img.ID || img.id;
+                            
+                            // Update Hidden Input with the Media_ID
+                            const hiddenInput = document.getElementById(`hidden_${fieldName}`);
+                            hiddenInput.value = mediaID;
+                            
+                            // Clear the file upload input and remove required
+                            const fileInput = document.getElementById(`file_${fieldName}`);
+                            fileInput.value = "";
+                            fileInput.removeAttribute('required');
+                            
+                            // Visual Feedback
+                            updatePreview(fieldName, imagePath);
+                            
+                            // Close modal
+                            document.body.removeChild(modal);
+                        });
+                        
+                        grid.appendChild(card);
+                    });
+                }
+
+                content.appendChild(header);
+                content.appendChild(grid);
+                modal.appendChild(content);
+                document.body.appendChild(modal);
+
+                // Close logic
+                header.querySelector('#closeGallery').addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+                modal.addEventListener('click', (e) => {
+                    if(e.target === modal) {
+                        document.body.removeChild(modal);
+                    }
+                });
+
+            } catch (err) {
+                console.error("Gallery error:", err);
+                messageDiv.textContent = "Error loading gallery: " + err.message;
+            }
+        }
+
+        function updatePreview(fieldName, path) {
+            let preview = document.getElementById(`preview_${fieldName}`);
+            if (!preview) {
+                preview = document.createElement('img');
+                preview.id = `preview_${fieldName}`;
+                preview.style = "height:40px; border-radius:4px; border:1px solid #ccc; margin-left:10px;";
+                document.getElementById(`file_${fieldName}`).parentElement.appendChild(preview);
+            }
+            preview.src = path;
+        }
+    </script>
+</body>
+
+</html>
