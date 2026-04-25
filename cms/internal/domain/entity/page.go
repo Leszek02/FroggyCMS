@@ -7,7 +7,7 @@ type Page struct {
 	Type                            string `gorm:"column:type" json:"type" form:"type"`
 	Content                         string `gorm:"column:content" json:"content" form:"content"`
 	Status                          bool   `gorm:"column:status" json:"status" nullable:"true" form:"status"`
-	Administrators_Administrator_ID int    `gorm:"column:administrators_administratod_id" json:"administrator_id"`
+	Administrators_Administrator_ID int    `gorm:"column:administrators_administrator_id" json:"administrator_id"`
 }
 
 func NewPage(name, page_type, content string, status bool, administrator int) *Page {

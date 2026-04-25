@@ -95,7 +95,7 @@ func (h *AuthHandler) Login(c echo.Context) error {
 		})
 	}
 	loginData.Password = hashedPassword
-
+	fmt.Println("Hashed password: ", hashedPassword)
 	client, err := h.clientService.Authenticate(loginData.Login, loginData.Password)
 	if err != nil {
 		return c.JSON(http.StatusUnauthorized, map[string]string{
@@ -131,7 +131,7 @@ func (h *AuthHandler) AdminLogin(c echo.Context) error {
 			"error": "Invalid request",
 		})
 	}
-
+	fmt.Println("The password server got: ", loginData.Password)
 	hashedPassword, err := h.passwordManager.HashPassword(loginData.Password)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
@@ -139,7 +139,7 @@ func (h *AuthHandler) AdminLogin(c echo.Context) error {
 		})
 	}
 	loginData.Password = hashedPassword
-
+	fmt.Println("Hashed password: ", hashedPassword)
 	admin, err := h.administratorService.Authenticate(loginData.Login, loginData.Password)
 	if err != nil {
 		return c.JSON(http.StatusUnauthorized, map[string]string{

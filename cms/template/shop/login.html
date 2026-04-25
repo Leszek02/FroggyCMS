@@ -32,6 +32,11 @@
                     <div class="col-lg-6 col-md-8">
                         <div class="card auth-card">
                             <div class="card-body">
+                                {{if .Error}}
+                                <div class="alert alert-warning" role="alert">
+                                    {{.Error}}
+                                </div>
+                                {{end}}
 
                                 <form
                                     action="{{if eq .LoginType "admin"}}/admin/login{{else}}/login{{end}}"

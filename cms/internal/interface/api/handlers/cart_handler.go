@@ -36,6 +36,13 @@ func (ch *CartHandler) UpdateCart(c echo.Context) error {
 			"error": fmt.Sprintf("Validation error: %s", err),
 		})
 	}
+
+	if !(ch.session.IsAuthenticated(c) && !ch.session.IsAdmin(c)) {
+		return c.JSON(http.StatusTeapot, map[string]string{
+			"error": fmt.Sprintf("Failed to add product to the cart: You're not logged in as a Client"),
+		})
+	}
+
 	fmt.Println("Cart: Validation passed")
 	newCartIDParam := data["product_id"]
 	quantityParam, ok := data["quantity"]

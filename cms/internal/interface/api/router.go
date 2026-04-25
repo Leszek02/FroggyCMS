@@ -114,7 +114,7 @@ func (r *Router) Setup(e *echo.Echo) {
 	admin.GET("/admin-static/order", func(c echo.Context) error {
 		return c.File("../template/admin/order.html")
 	})
-
+	//  administrator_id | first_name | last_name | login | password | email | phone | create_date | modify_date | last_login
 	// Expose public folder
 	e.Static("/static/*", "../public")
 	e.Static("/media/*", "../media")
@@ -122,6 +122,7 @@ func (r *Router) Setup(e *echo.Echo) {
 	e.GET("/login", r.sessionMiddleware.IsLogged(func(c echo.Context) error {
 		return c.Render(http.StatusOK, fmt.Sprintf("login"), map[string]any{
 			"LoginType": "client",
+			"Error":     c.QueryParam("error"),
 		})
 	}))
 	e.GET("/register", r.sessionMiddleware.IsLogged(func(c echo.Context) error {

@@ -17,6 +17,7 @@ func NewPasswordHasher() *PasswordHasher {
 }
 
 func (ph *PasswordHasher) HashPassword(password string) (string, error) {
-	ph.sha256.Write([]byte(password))
-	return fmt.Sprintf("%x", ph.sha256.Sum(nil)), nil
+	h := sha256.New()
+	h.Write([]byte(password))
+	return fmt.Sprintf("%x", h.Sum(nil)), nil
 }

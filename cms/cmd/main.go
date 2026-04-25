@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/gob"
 	"fmt"
+	"os"
 
 	"prestaprest/internal/application/service"
 	"prestaprest/internal/infrastructure/auth"
@@ -16,6 +17,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
+	"github.com/joho/godotenv"
 )
 
 type DBConfig struct {
@@ -28,15 +30,21 @@ type DBConfig struct {
 }
 
 func main() {
-	//TODO: ADD TEMPLATE EDITING: footer, page, product_page, search, shop, ??? cart, checkout,
+	//TODO: ADD TEMPLATE EDITING: footer, page, product_page, search, shop, cart, checkout,
 	//TODO: BLOCK EDITING: search, cart,
 	//TODO: Delete all prints
-
+	
 	//TODO: Add proper error handling in shop pages
 	//TODO: Add order.html to adminPanel
 
+	err := godotenv.Load()
+    if err != nil {
+        fmt.Println("No .env file found, using system environment variables")
+    }
+
 	ctx := context.Background()
-	db := ("host=localhost user=postgres password=postgres dbname=postgres port=5433 sslmode=disable")
+	db := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
+			os.Getenv("DB_HOST"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_NAME"), os.Getenv("DB_PORT"))
 	conn, err := postgres.NewConnection(ctx, db)
 	if err != nil {
 		fmt.Println(err)
@@ -54,7 +62,7 @@ func main() {
 	gob.Register(map[uint64]int{})
 	auth.InitSessionStore(authKey, encryptionKey)
 	if auth.Store == nil {
-		fmt.Println("ERROR: auth.Store is still nil after InitSessionStore!")
+		fmt.Println("ERROR: failed to init auth.Store")
 	} else {
 		fmt.Println("SUCCESS: auth.Store initialized")
 	}

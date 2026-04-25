@@ -8,7 +8,7 @@ type Client struct {
 	First_name string    `form:"First_name" json:"First_name"`
 	Last_name  string    `form:"Last_name" json:"Last_name"`
 	Login      string    `form:"login" json:"login"`
-	Password   string    `json:"password" form:"-"`
+	Password   string    `json:"password" form:"password"`
 	Email      string    `form:"email" json:"email"`
 	Phone      string    `form:"phone" json:"phone"`
 	Status     bool      `form:"status" json:"status" nullable:"true"`

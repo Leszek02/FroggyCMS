@@ -8,7 +8,7 @@ type Navigation struct {
 	Position                         int           `gorm:"column:position" json:"position"`
 	Status                           bool          `gorm:"column:status" json:"status" nullable:"true"`
 	Navigation_Navigation_ID         *uint         `gorm:"column:navigation_navigation_id" json:"parent" form:"select" options:"/navigation" labelField:"Name" valueField:"Navigation_ID"`
-	Administrators_Administrators_ID uint          `gorm:"column:administrators_administratod_id" json:"administrator_id" form:"-"`
+	Administrators_Administrators_ID uint          `gorm:"column:administrators_administrator_id" json:"administrator_id" form:"-"`
 	Children                         []*Navigation `gorm:"-" json:"children,omitempty" form:"-"`
 }
 

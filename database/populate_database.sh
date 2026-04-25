@@ -1,1 +1,1 @@
-docker exec -i <CONTAINER_ID> psql -U postgres -d postgres < create_navigation.sql
+docker exec -i froggycms-database psql -U postgres -d postgres < populate_database.sql
