@@ -1,7 +1,7 @@
 # FROGGY CMS
 
 ### Local run
-run `cp .env.example .env`
+in /cms/cmd folder run `cp .env.example .env`
 in /cms folder run `go mod download`
 in /cms/cmd folder run `go run .`
 
